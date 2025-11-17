@@ -36,9 +36,16 @@ type Admin = {
 
 
 ### 2. What is the use of the keyof keyword in TypeScript? Provide an example
-`keyof` কিওয়ার্ড ব্যবহার করা হয় একটি অবজেক্ট টাইপের সমস্ত প্রপার্টির নামের ইউনিয়ন টাইপ বের করার জন্য। এটি টাইপ-সেফ ফাংশন তৈরি করতে খুবই উপকারী।  
 
-**উদাহরণ:**
+`keyof` কিওয়ার্ড TypeScript-এ ব্যবহৃত হয় একটি **অবজেক্ট টাইপের সমস্ত প্রপার্টির নাম বের করার জন্য**। এটি মূলত টাইপ-সেফ ফাংশন, জেনেরিক ফাংশন, এবং অবজেক্ট প্রপার্টি অ্যাক্সেসের জন্য ব্যবহৃত হয়।  
+
+**মূল ধারণা:**  
+- `keyof Type` ব্যবহার করলে TypeScript সেই টাইপের সব কী-এর একটি **ইউনিয়ন টাইপ** তৈরি করে।  
+- এটি নিশ্চিত করে যে অবজেক্টের প্রপার্টি অ্যাক্সেস করার সময় শুধুমাত্র বৈধ কী ব্যবহার হবে।  
+
+---
+
+#### উদাহরণ ১: বেসিক ব্যবহার
 ```ts
 type Person = {
   name: string;
@@ -46,6 +53,7 @@ type Person = {
   city: string;
 };
 
+// keyof ব্যবহার করে সব কী-এর ইউনিয়ন টাইপ তৈরি
 type PersonKeys = keyof Person; 
 // ফলাফল: "name" | "age" | "city"
 
@@ -55,8 +63,14 @@ function getProperty(obj: Person, key: keyof Person) {
 
 const person: Person = { name: "Tarek", age: 25, city: "Dhaka" };
 
-const nameValue = getProperty(person, "name"); //  allowed
-// const invalidValue = getProperty(person, "country"); //  Error: 'country' is not a key of Person
-
+const nameValue = getProperty(person, "name"); // allowed
+const ageValue = getProperty(person, "age");   // allowed
+const invalidValue = getProperty(person, "country"); // Error
 ```
+**ব্যাখ্যা:**
 
+- এখানে keyof Person TypeScript কে জানায় যে key প্যারামিটার শুধুমাত্র "name" | "age" | "city" হতে পারবে।
+
+- ভুল কী ব্যবহার করলে কম্পাইল টাইমেই এরর দেখায়।
+
+- এটি টাইপ-সেফ কোড নিশ্চিত করে।
