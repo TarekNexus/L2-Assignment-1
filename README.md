@@ -1,6 +1,6 @@
 # TypeScript Blog Post (Bangla)
 
-## Blog: TypeScript Concepts Explained in Bangla
+
 
 ### 1. What are some differences between interfaces and types in TypeScript?
 TypeScript-এ `interface` এবং `type` দুটোই অবজেক্টের আকার বা টাইপ ডিফাইন করার জন্য ব্যবহৃত হয়। তবে এদের মধ্যে কিছু মূল পার্থক্য আছে:  
