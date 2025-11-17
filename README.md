@@ -28,6 +28,7 @@ type Admin = {
     name: string;
     role: string;
 };
+```
 
 
 
@@ -57,5 +58,5 @@ const person: Person = { name: "Tarek", age: 25, city: "Dhaka" };
 const nameValue = getProperty(person, "name"); //  allowed
 // const invalidValue = getProperty(person, "country"); //  Error: 'country' is not a key of Person
 
-
+```
 
